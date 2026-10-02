@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { X, CheckCircle, Calendar, Clock, User, Phone, Stethoscope, MessageSquare } from 'lucide-react';
-import { doctors, obstetricsGynecologyUnits, surgicalDepartments, hospitalInfo } from '../data/hospitalData';
+import { X, CheckCircle, Calendar, Clock, User, Phone, MessageSquare, Building2 } from 'lucide-react';
+import { obstetricsGynecologyUnits, surgicalDepartments, hospitalInfo } from '../data/hospitalData';
 
 export default function AppointmentModal({ isOpen, onClose, preselectedDoctor = '', preselectedDept = '' }) {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
-    doctor: preselectedDoctor || '',
     department: preselectedDept || '',
     date: '',
     timeSlot: 'Morning (10:00 AM - 1:00 PM)',
@@ -16,13 +15,10 @@ export default function AppointmentModal({ isOpen, onClose, preselectedDoctor = 
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
-    if (preselectedDoctor) {
-      setFormData(prev => ({ ...prev, doctor: preselectedDoctor }));
-    }
     if (preselectedDept) {
       setFormData(prev => ({ ...prev, department: preselectedDept }));
     }
-  }, [preselectedDoctor, preselectedDept]);
+  }, [preselectedDept]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -45,7 +41,6 @@ export default function AppointmentModal({ isOpen, onClose, preselectedDoctor = 
     setFormData({
       name: '',
       phone: '',
-      doctor: '',
       department: '',
       date: '',
       timeSlot: 'Morning (10:00 AM - 1:00 PM)',
@@ -83,41 +78,25 @@ export default function AppointmentModal({ isOpen, onClose, preselectedDoctor = 
                 />
               </div>
 
-              <div className="form-row">
-                <div className="form-group">
-                  <label><Phone size={14} /> Phone Number *</label>
-                  <input
-                    type="tel"
-                    required
-                    placeholder="e.g. 9823000000"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label><Stethoscope size={14} /> Select Doctor</label>
-                  <select
-                    value={formData.doctor}
-                    onChange={(e) => setFormData({ ...formData, doctor: e.target.value })}
-                  >
-                    <option value="">Any Available Specialist</option>
-                    {doctors.map((d) => (
-                      <option key={d.id} value={d.name}>
-                        {d.name} ({d.role})
-                      </option>
-                    ))}
-                  </select>
-                </div>
+              <div className="form-group">
+                <label><Phone size={14} /> Phone Number *</label>
+                <input
+                  type="tel"
+                  required
+                  placeholder="e.g. 9823000000"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                />
               </div>
 
               <div className="form-group">
-                <label>Department / Specialty</label>
+                <label><Building2 size={14} /> Department / Specialty</label>
                 <select
                   value={formData.department}
                   onChange={(e) => setFormData({ ...formData, department: e.target.value })}
+                  aria-label="Department or Specialty"
                 >
-                  <option value="">Select Specialty</option>
+                  <option value="">Select Specialty / Department (Optional)</option>
                   <optgroup label="Obstetrics & Gynecology">
                     {obstetricsGynecologyUnits.map((u) => (
                       <option key={u.id} value={u.title}>{u.title}</option>
@@ -147,6 +126,7 @@ export default function AppointmentModal({ isOpen, onClose, preselectedDoctor = 
                   <select
                     value={formData.timeSlot}
                     onChange={(e) => setFormData({ ...formData, timeSlot: e.target.value })}
+                    aria-label="Preferred Time Slot"
                   >
                     <option value="Morning (10:00 AM - 1:00 PM)">Morning (10:00 AM - 1:00 PM)</option>
                     <option value="Afternoon (1:00 PM - 3:00 PM)">Afternoon (1:00 PM - 3:00 PM)</option>
@@ -181,9 +161,9 @@ export default function AppointmentModal({ isOpen, onClose, preselectedDoctor = 
             <p>
               Thank you, <strong>{formData.name}</strong>. Our hospital coordinator will contact you at <strong>{formData.phone}</strong> to confirm your slot.
             </p>
-            {formData.doctor && (
+            {formData.department && (
               <div className="success-detail">
-                <span>Requested Doctor:</span> <strong>{formData.doctor}</strong>
+                <span>Requested Specialty:</span> <strong>{formData.department}</strong>
               </div>
             )}
             <div className="success-actions">

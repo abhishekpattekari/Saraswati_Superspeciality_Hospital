@@ -3363,27 +3363,28 @@ button {
   }
 
   .hero-banner-track {
-    height: calc(75vh - 100px);
-    min-height: 440px;
-    max-height: 600px;
-    aspect-ratio: auto
+    width: 100%;
+    aspect-ratio: 1956 / 724;
+    height: auto;
+    max-height: 480px;
+    min-height: unset;
   }
 
   .hero-carousel .arrow {
-    width: 36px;
-    height: 36px
+    width: 34px;
+    height: 34px
   }
 
   .hero-carousel .arrow.left {
-    left: 10px
+    left: 8px
   }
 
   .hero-carousel .arrow.right {
-    right: 10px
+    right: 8px
   }
 
   .hero-carousel .dots {
-    bottom: 10px;
+    bottom: 8px;
     padding: 4px 10px;
     gap: 6px
   }
@@ -3391,15 +3392,19 @@ button {
 
 @media(max-width:700px) {
   .hero-banner-track {
-    height: calc(100svh - 108px);
-    height: calc(100dvh - 108px);
-    height: calc(100vh - 108px);
-    min-height: 520px;
-    max-height: 820px;
-    aspect-ratio: auto
+    width: 100%;
+    aspect-ratio: 1956 / 724;
+    height: auto;
+    min-height: unset;
+    max-height: unset;
+    overflow: hidden;
+    position: relative;
+    display: block
   }
 
   .hero-banner-slide {
+    position: absolute;
+    inset: 0;
     height: 100%;
     width: 100%
   }
@@ -3407,41 +3412,42 @@ button {
   .hero-banner-img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: 28% center
+    object-fit: contain;
+    object-position: center;
+    display: block
   }
 
   .hero-carousel .arrow {
-    width: 38px;
-    height: 38px;
-    background: rgba(255, 255, 255, .88);
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, .82);
     backdrop-filter: blur(4px);
-    box-shadow: 0 4px 14px rgba(0, 0, 0, .18)
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .15)
   }
 
   .hero-carousel .arrow.left {
-    left: 10px
+    left: 6px
   }
 
   .hero-carousel .arrow.right {
-    right: 10px
+    right: 6px
   }
 
   .hero-carousel .dots {
-    bottom: 16px;
-    padding: 6px 14px;
-    gap: 8px;
-    background: rgba(7, 81, 108, .42);
-    backdrop-filter: blur(6px)
+    bottom: 6px;
+    padding: 3px 8px;
+    gap: 5px;
+    background: rgba(7, 81, 108, .35);
+    backdrop-filter: blur(4px)
   }
 
   .hero-carousel .dot {
-    width: 8px;
-    height: 8px
+    width: 6px;
+    height: 6px
   }
 
   .hero-carousel .dot.active {
-    width: 22px
+    width: 16px
   }
 
   .wrap {

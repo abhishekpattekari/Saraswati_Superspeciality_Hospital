@@ -214,9 +214,11 @@ export default function HomePage({ navigate, onBookClick }) {
       <section id="about" className="about section">
         <div className="wrap about-grid">
           <div className="about-art">
-            <div className="art-circle">
-              <img src="/assets/saraswati-logo.jpg" alt="Saraswati Hospital emblem" />
-            </div>
+            <img
+              src="/assets/HOSPITAL PHOTO/RD6_4765.jpg"
+              alt="Saraswati Superspeciality Hospital Lobby and Patient Reception"
+              className="about-facility-photo"
+            />
             <div className="art-note">
               <span>24/7</span>
               <small>emergency<br />& ICU care</small>

@@ -33,9 +33,11 @@ export default function AboutPage({ navigate, onBookClick }) {
         <div className="wrap">
           <div className="about-grid">
             <div className="about-art">
-              <div className="art-circle">
-                <img src="/assets/saraswati-logo.jpg" alt="Saraswati Superspeciality Hospital" />
-              </div>
+              <img
+                src="/assets/HOSPITAL PHOTO/RD6_4449.jpg"
+                alt="Saraswati Superspeciality Hospital Doctor Consultation Suite"
+                className="about-facility-photo"
+              />
               <div className="art-note">
                 <span>15+</span>
                 <small>Years of Clinical<br />Dedication</small>

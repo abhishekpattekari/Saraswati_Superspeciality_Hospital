@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { X, ExternalLink, Play } from 'lucide-react';
 import { InstagramIcon, YouTubeIcon } from './SocialIcons';
 
 export default function VideoPlayerModal({ video, onClose }) {
   if (!video) return null;
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose]);
 
   const isInstagram = video.type === 'instagram' || video.url?.includes('instagram.com');
   const isYouTube = video.type === 'youtube' || video.url?.includes('youtu');
@@ -19,14 +29,31 @@ export default function VideoPlayerModal({ video, onClose }) {
     : null;
 
   return (
-    <div className="modal-backdrop" onClick={onClose}>
+    <div className="modal-backdrop" onClick={onClose} role="dialog" aria-modal="true">
       <div
         className={`modal-card in-site-video-modal ${isInstagram ? 'reel-modal-card' : 'yt-modal-card'}`}
         onClick={(e) => e.stopPropagation()}
       >
-        <button className="modal-close" onClick={onClose} aria-label="Close video player">
-          <X size={20} />
-        </button>
+        {/* Prominent Top Close Bar that is never covered by iframe */}
+        <div className="video-modal-top-bar">
+          <div className="video-modal-title-wrap">
+            {isInstagram ? <InstagramIcon size={20} /> : <YouTubeIcon size={20} />}
+            <span className="video-modal-platform-badge">
+              {isInstagram ? 'Instagram Reel' : 'YouTube Video'}
+            </span>
+            <span className="video-modal-title-text">{video.title}</span>
+          </div>
+          <button
+            type="button"
+            className="video-header-close-btn"
+            onClick={onClose}
+            aria-label="Close Video Player"
+            title="Close (Esc)"
+          >
+            <X size={18} />
+            <span>Close</span>
+          </button>
+        </div>
 
         {isYouTube && (
           <div className="video-embed-container">
@@ -68,15 +95,26 @@ export default function VideoPlayerModal({ video, onClose }) {
             <span className="playing-live-badge">
               <span className="live-dot" /> Playing in Saraswati Hospital website
             </span>
-            <a
-              href={video.url}
-              target="_blank"
-              rel="noreferrer"
-              className="text-link"
-              style={{ fontSize: '11px' }}
-            >
-              Open externally <ExternalLink size={12} />
-            </a>
+
+            <div className="video-footer-actions">
+              <a
+                href={video.url}
+                target="_blank"
+                rel="noreferrer"
+                className="text-link"
+                style={{ fontSize: '12px' }}
+              >
+                Open externally <ExternalLink size={13} />
+              </a>
+              <button
+                type="button"
+                className="video-footer-close-btn"
+                onClick={onClose}
+                aria-label="Close video player"
+              >
+                <X size={15} /> Close Video Player
+              </button>
+            </div>
           </div>
         </div>
       </div>

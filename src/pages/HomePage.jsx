@@ -511,16 +511,6 @@ export default function HomePage({ navigate, onBookClick }) {
                 <div className="reel-content-box">
                   <h4>{reel.title}</h4>
                   <p>{reel.desc}</p>
-                  <button
-                    type="button"
-                    className="watch-in-site-btn"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setActivePlayingVideo({ type: 'instagram', ...reel });
-                    }}
-                  >
-                    <Play size={13} fill="currentColor" /> Watch Reel in Website
-                  </button>
                 </div>
               </div>
             ))}
@@ -568,17 +558,11 @@ export default function HomePage({ navigate, onBookClick }) {
                       <Play size={18} fill="#fff" />
                     </div>
                   </div>
-                  <span className="video-thumb-play-tag">
-                    <YouTubeIcon size={14} /> Play in site
-                  </span>
                 </div>
-                <div style={{ padding: '14px 15px 0' }}>
-                  <b style={{ margin: '0 0 8px', display: 'block', color: 'var(--deep)', fontSize: '13px', lineHeight: 1.4 }}>
+                <div style={{ padding: '14px 15px 16px' }}>
+                  <b style={{ margin: '0', display: 'block', color: 'var(--deep)', fontSize: '13px', lineHeight: 1.4 }}>
                     {v.title}
                   </b>
-                  <small style={{ display: 'flex', alignItems: 'center', gap: '5px', color: 'var(--teal)', fontSize: '11px', margin: 0, fontWeight: 700 }}>
-                    <Play size={12} fill="currentColor" /> Play inside website
-                  </small>
                 </div>
               </div>
             ))}

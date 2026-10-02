@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Phone, ExternalLink, Menu, X, CalendarCheck } from 'lucide-react';
 import { hospitalInfo } from '../data/hospitalData';
 import { InstagramIcon, YouTubeIcon } from './SocialIcons';
 
 export default function Navbar({ activePage, navigate, menuOpen, setMenuOpen, onBookClick }) {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const navItems = [
     { id: 'home', label: 'Home' },
     { id: 'about', label: 'About Us' },
@@ -31,7 +41,7 @@ export default function Navbar({ activePage, navigate, menuOpen, setMenuOpen, on
         </div>
       </div>
 
-      <header className="header">
+      <header className={`header ${isScrolled ? 'header-scrolled' : ''}`}>
         <div className="wrap header-in">
           <a
             className="brand"

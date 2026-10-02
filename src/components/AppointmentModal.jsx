@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, CheckCircle, Calendar, Clock, User, Phone, Stethoscope, MessageSquare } from 'lucide-react';
 import { doctors, obstetricsGynecologyUnits, surgicalDepartments, hospitalInfo } from '../data/hospitalData';
 
@@ -14,6 +14,24 @@ export default function AppointmentModal({ isOpen, onClose, preselectedDoctor = 
   });
 
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (preselectedDoctor) {
+      setFormData(prev => ({ ...prev, doctor: preselectedDoctor }));
+    }
+    if (preselectedDept) {
+      setFormData(prev => ({ ...prev, department: preselectedDept }));
+    }
+  }, [preselectedDoctor, preselectedDept]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -36,10 +54,12 @@ export default function AppointmentModal({ isOpen, onClose, preselectedDoctor = 
     onClose();
   };
 
+  const todayStr = new Date().toISOString().split('T')[0];
+
   return (
-    <div className="modal-backdrop" onClick={onClose}>
-      <div className="modal-card" onClick={(e) => e.stopPropagation()}>
-        <button className="modal-close" onClick={onClose} aria-label="Close appointment modal">
+    <div className="modal-backdrop" onClick={onClose} role="dialog" aria-modal="true">
+      <div className="modal-card appointment-modal-card" onClick={(e) => e.stopPropagation()}>
+        <button className="modal-close" onClick={onClose} aria-label="Close appointment modal" title="Close (Esc)">
           <X size={20} />
         </button>
 
@@ -116,6 +136,7 @@ export default function AppointmentModal({ isOpen, onClose, preselectedDoctor = 
                   <label><Calendar size={14} /> Preferred Date</label>
                   <input
                     type="date"
+                    min={todayStr}
                     value={formData.date}
                     onChange={(e) => setFormData({ ...formData, date: e.target.value })}
                   />

@@ -139,19 +139,6 @@ export default function MediaPage() {
                   <div className="yt-card-content">
                     <h4>{vid.title}</h4>
                     <p>{vid.desc}</p>
-                    <div className="yt-card-links">
-                      <button
-                        type="button"
-                        className="watch-in-site-btn"
-                        style={{ marginTop: 0 }}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setActivePlayingVideo({ type: 'youtube', ...vid });
-                        }}
-                      >
-                        <Play size={13} fill="currentColor" /> Play in Website
-                      </button>
-                    </div>
                   </div>
                 </div>
               ))}
@@ -210,17 +197,6 @@ export default function MediaPage() {
                   <div className="reel-content-box">
                     <h4>{reel.title}</h4>
                     <p>{reel.desc}</p>
-
-                    <button
-                      type="button"
-                      className="watch-in-site-btn"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setActivePlayingVideo({ type: 'instagram', ...reel });
-                      }}
-                    >
-                      <Play size={13} fill="currentColor" /> Watch Reel in Website
-                    </button>
                   </div>
                 </div>
               ))}

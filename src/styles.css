@@ -397,52 +397,90 @@ button {
 
 .quick {
   background: #fff;
-  box-shadow: var(--shadow);
+  box-shadow: 0 4px 20px rgba(12, 77, 93, .08);
   position: relative;
-  z-index: 2
+  z-index: 2;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
 }
 
 .quick-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  min-height: 108px
+  min-height: 84px;
+  align-items: stretch;
 }
 
 .quick-card {
-  padding: 22px 23px;
+  padding: 16px 14px;
   display: flex;
   align-items: center;
-  gap: 13px;
+  gap: 11px;
   border-right: 1px solid var(--line);
   color: var(--teal);
-  transition: .2s;
-  cursor: pointer
+  transition: all .2s ease;
+  cursor: pointer;
+  min-width: 0;
+  background: #fff;
 }
 
 .quick-card:first-child {
-  border-left: 1px solid var(--line)
+  border-left: 1px solid var(--line);
 }
 
 .quick-card:hover {
-  background: var(--mint)
+  background: var(--mint);
+  color: #057885;
+}
+
+.quick-card .quick-icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  color: var(--teal);
 }
 
 .quick-card span {
-  flex: 1
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .quick-card b {
   display: block;
-  font-size: 11px;
-  letter-spacing: .7px;
-  color: var(--deep)
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: .4px;
+  color: var(--deep);
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .quick-card small {
   display: block;
-  color: #83989c;
+  color: #7e9599;
   font-size: 11px;
-  margin-top: 5px
+  margin-top: 3px;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.quick-card .quick-arrow {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: #9ebdc2;
+  transition: transform .2s ease, color .2s ease;
+}
+
+.quick-card:hover .quick-arrow {
+  transform: translateX(3px);
+  color: var(--teal);
 }
 
 .section {
@@ -972,9 +1010,10 @@ button {
 .hero-banner-track {
   position: relative;
   width: 100%;
-  aspect-ratio: 1956/724;
-  max-height: 580px;
-  min-height: 180px;
+  height: calc(100vh - 124px - 84px);
+  max-height: 520px;
+  min-height: 360px;
+  aspect-ratio: auto;
   overflow: hidden;
   display: block
 }
@@ -1001,10 +1040,7 @@ button {
 }
 
 .hero-floating-cta {
-  position: absolute;
-  bottom: 26px;
-  right: 32px;
-  z-index: 3
+  display: none
 }
 
 .hero-cta-btn {

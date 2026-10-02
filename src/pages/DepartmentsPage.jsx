@@ -122,37 +122,49 @@ export default function DepartmentsPage({ selectedDeptId, onBookClick }) {
             <div className="department-grid">
               {filteredObGyn.map((unit) => (
                 <article
-                  className={`department ${activeDetail?.id === unit.id ? 'highlighted-dept' : ''}`}
+                  className={`department with-image ${activeDetail?.id === unit.id ? 'highlighted-dept' : ''}`}
                   key={unit.id}
                 >
-                  <div className="dept-icon">{getIcon(unit.icon)}</div>
-                  <span className="dept-badge">{unit.category}</span>
-                  <h3>{unit.title}</h3>
-                  <p>{unit.shortDesc}</p>
+                  <div className="dept-image-frame">
+                    <img
+                      src={unit.image}
+                      alt={unit.title}
+                      className="dept-img"
+                      loading="lazy"
+                    />
+                    <div className="dept-image-overlay" />
+                    <span className="dept-category-overlay-badge">{unit.category}</span>
+                    <div className="dept-icon-floating">{getIcon(unit.icon)}</div>
+                  </div>
 
-                  <ul className="dept-highlights-list">
-                    {unit.highlights.slice(0, 3).map((h, i) => (
-                      <li key={i}>
-                        <CheckCircle2 size={13} className="bullet-check" />
-                        <span>{h}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="dept-content">
+                    <h3>{unit.title}</h3>
+                    <p>{unit.shortDesc}</p>
 
-                  <div className="dept-card-actions">
-                    <button
-                      className="dept-action-link"
-                      onClick={() => setActiveDetail(unit)}
-                    >
-                      <Info size={14} /> Full Details
-                    </button>
-                    <button
-                      className="button"
-                      style={{ padding: '7px 12px', fontSize: '11px' }}
-                      onClick={() => onBookClick('', unit.title)}
-                    >
-                      Book Visit
-                    </button>
+                    <ul className="dept-highlights-list">
+                      {unit.highlights.slice(0, 3).map((h, i) => (
+                        <li key={i}>
+                          <CheckCircle2 size={13} className="bullet-check" />
+                          <span>{h}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="dept-card-actions">
+                      <button
+                        className="dept-action-link"
+                        onClick={() => setActiveDetail(unit)}
+                      >
+                        <Info size={14} /> Full Details
+                      </button>
+                      <button
+                        className="button"
+                        style={{ padding: '7px 12px', fontSize: '11px' }}
+                        onClick={() => onBookClick('', unit.title)}
+                      >
+                        Book Visit
+                      </button>
+                    </div>
                   </div>
                 </article>
               ))}
@@ -239,6 +251,11 @@ export default function DepartmentsPage({ selectedDeptId, onBookClick }) {
         <div className="modal-backdrop" onClick={() => setActiveDetail(null)}>
           <div className="modal-card detail-modal" onClick={(e) => e.stopPropagation()}>
             <button className="modal-close" onClick={() => setActiveDetail(null)}>✕</button>
+            {activeDetail.image && (
+              <div style={{ width: '100%', height: '210px', borderRadius: '4px', overflow: 'hidden', marginBottom: '16px' }}>
+                <img src={activeDetail.image} alt={activeDetail.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              </div>
+            )}
             <span className="kicker">DEPARTMENT OVERVIEW</span>
             <h2>{activeDetail.title}</h2>
             <p className="detail-modal-desc">

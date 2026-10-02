@@ -238,14 +238,9 @@ export default function MediaPage() {
                 <span className="kicker">HOSPITAL INFRASTRUCTURE & INTERIORS</span>
                 <h2>Hospital Campus Gallery</h2>
               </div>
-              <a
-                className="outline"
-                href={hospitalInfo.socials.driveGallery}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <FolderOpen size={16} /> Open Google Drive Folder <ExternalLink size={14} />
-              </a>
+              <span className="channel-badge" style={{ color: 'var(--deep)' }}>
+                <ImageIcon size={15} style={{ color: 'var(--teal)' }} /> {hospitalPhotos.length} Campus Photographs
+              </span>
             </div>
 
             <p style={{ color: '#68818b', fontSize: '13px', marginTop: '-15px', marginBottom: '25px' }}>

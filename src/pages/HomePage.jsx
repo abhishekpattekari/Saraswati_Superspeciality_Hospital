@@ -16,7 +16,8 @@ import {
   CheckCircle2,
   Clock3,
   Navigation,
-  Ambulance
+  Ambulance,
+  X
 } from 'lucide-react';
 import {
   heroBanners,
@@ -25,7 +26,8 @@ import {
   obstetricsGynecologyUnits,
   surgicalDepartments,
   instagramReels,
-  youtubeVideos
+  youtubeVideos,
+  hospitalPhotos
 } from '../data/hospitalData';
 import { InstagramIcon, YouTubeIcon } from '../components/SocialIcons';
 import VideoPlayerModal from '../components/VideoPlayerModal';
@@ -35,6 +37,7 @@ export default function HomePage({ navigate, onBookClick }) {
   const [paused, setPaused] = useState(false);
   const [touchStartX, setTouchStartX] = useState(null);
   const [activePlayingVideo, setActivePlayingVideo] = useState(null);
+  const [activePhotoModal, setActivePhotoModal] = useState(null);
 
   useEffect(() => {
     if (paused) return;
@@ -260,19 +263,33 @@ export default function HomePage({ navigate, onBookClick }) {
 
           <div className="department-grid">
             {obstetricsGynecologyUnits.map((u) => (
-              <article className="department" key={u.id}>
-                <div className="dept-icon">{getIcon(u.icon)}</div>
-                <h3>{u.title}</h3>
-                <p>{u.shortDesc}</p>
-                <a
-                  href={`#departments`}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    navigate('departments', u.id);
-                  }}
-                >
-                  Explore specialty <ArrowRight size={15} />
-                </a>
+              <article className="department with-image" key={u.id}>
+                <div className="dept-image-frame">
+                  <img
+                    src={u.image}
+                    alt={u.title}
+                    className="dept-img"
+                    loading="lazy"
+                  />
+                  <div className="dept-image-overlay" />
+                  <span className="dept-category-overlay-badge">{u.category}</span>
+                  <div className="dept-icon-floating">{getIcon(u.icon)}</div>
+                </div>
+
+                <div className="dept-content">
+                  <h3>{u.title}</h3>
+                  <p>{u.shortDesc}</p>
+                  <a
+                    href={`#departments`}
+                    className="dept-explore-btn"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigate('departments', u.id);
+                    }}
+                  >
+                    Explore specialty <ArrowRight size={15} />
+                  </a>
+                </div>
               </article>
             ))}
           </div>
@@ -361,6 +378,49 @@ export default function HomePage({ navigate, onBookClick }) {
                 </div>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CAMPUS & INFRASTRUCTURE */}
+      <section className="section gallery-preview-sec" style={{ background: '#f8fbfb' }}>
+        <div className="wrap">
+          <div className="section-heading">
+            <div>
+              <span className="kicker">CAMPUS & INFRASTRUCTURE</span>
+              <h2>Inside Saraswati Superspeciality Hospital</h2>
+            </div>
+            <button
+              className="outline"
+              onClick={() => navigate('media')}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}
+            >
+              View Full Campus Gallery ({hospitalPhotos.length} Photos) <ArrowRight size={16} />
+            </button>
+          </div>
+
+          <p style={{ color: '#68818b', fontSize: '13px', marginTop: '-18px', marginBottom: '28px', maxWidth: '660px', lineHeight: '1.7' }}>
+            Take a visual tour inside our hospital in Maliwada, Ahilyanagar — featuring modern modular operation theatres, sterile labour suites, 10-bed ICU, and patient care rooms.
+          </p>
+
+          <div className="photo-grid-preview">
+            {hospitalPhotos.slice(0, 6).map((photo, idx) => (
+              <div
+                key={idx}
+                className="photo-preview-item"
+                onClick={() => setActivePhotoModal(photo)}
+                title={`Click to view ${photo.title}`}
+              >
+                <img src={photo.src} alt={photo.title} loading="lazy" decoding="async" />
+                <span>{photo.title}</span>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ textAlign: 'center', marginTop: '35px' }}>
+            <button className="button" onClick={() => navigate('media')}>
+              View All Facilities, Reels & Videos <ArrowRight size={17} />
+            </button>
           </div>
         </div>
       </section>
@@ -639,6 +699,26 @@ export default function HomePage({ navigate, onBookClick }) {
         video={activePlayingVideo}
         onClose={() => setActivePlayingVideo(null)}
       />
+
+      {/* PHOTO LIGHTBOX MODAL */}
+      {activePhotoModal && (
+        <div className="modal-backdrop" onClick={() => setActivePhotoModal(null)}>
+          <div className="modal-card lightbox-card" onClick={(e) => e.stopPropagation()}>
+            <button
+              className="modal-close"
+              onClick={() => setActivePhotoModal(null)}
+              aria-label="Close photo preview"
+            >
+              <X size={20} />
+            </button>
+            <img src={activePhotoModal.src} alt={activePhotoModal.title} />
+            <div className="lightbox-caption">
+              <strong>{activePhotoModal.title}</strong>
+              <small>Saraswati Superspeciality Hospital, Ahilyanagar</small>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }

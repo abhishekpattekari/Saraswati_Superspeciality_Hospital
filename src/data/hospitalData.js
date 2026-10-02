@@ -23,8 +23,7 @@ export const hospitalInfo = {
     instagram: "https://www.instagram.com/saraswati_hospitals",
     instagramHandle: "@saraswati_hospitals",
     youtube: "https://www.youtube.com/@saraswatihospital898",
-    youtubeHandle: "@saraswatihospital898",
-    driveGallery: "https://drive.google.com/drive/folders/1nOK9-imAZFCnDQdEDMP420gkY7Nmf7BI?usp=sharing"
+    youtubeHandle: "@saraswatihospital898"
   }
 };
 
@@ -140,6 +139,7 @@ export const obstetricsGynecologyUnits = [
     shortDesc: "Expert care for pregnancy, childbirth, hormonal health and complete women’s wellness.",
     fullDesc: "Our core Obstetrics & Gynecology department provides comprehensive healthcare for women from adolescence through motherhood and menopause. We emphasize preventive health, compassionate guidance, and clinical precision in managing all female reproductive health conditions.",
     icon: "Baby",
+    image: "/assets/departments/obstetrics-gynecology.jpg",
     highlights: [
       "Comprehensive prenatal, antenatal & postnatal checkups",
       "Painless labour and supportive birthing environment",
@@ -155,6 +155,7 @@ export const obstetricsGynecologyUnits = [
     shortDesc: "Comfort-led delivery spaces supported by experienced maternity teams and continuous monitoring.",
     fullDesc: "Designed to provide mother and family with calm, privacy, and clinical assurance. Our labour suites feature ergonomic birthing beds, fetal telemetry monitors, neonatal resuscitation warmers, and supportive birth companions.",
     icon: "HeartPulse",
+    image: "/assets/departments/labour-delivery-suites.jpg",
     highlights: [
       "Private and sterile birthing suites with home-like warmth",
       "Continuous electronic fetal-maternal monitoring",
@@ -170,6 +171,7 @@ export const obstetricsGynecologyUnits = [
     shortDesc: "Specialist monitoring and coordinated multidisciplinary care for complex pregnancies.",
     fullDesc: "High-risk pregnancies demand dedicated vigilance and advanced clinical equipment. Our unit manages complex maternal and fetal conditions with meticulous monitoring protocols and immediate emergency backup.",
     icon: "ShieldCheck",
+    image: "/assets/departments/high-risk-pregnancy.jpg",
     highlights: [
       "Management of gestational diabetes (GDM) & preeclampsia",
       "Twin and higher-order multiple pregnancies",
@@ -185,6 +187,7 @@ export const obstetricsGynecologyUnits = [
     shortDesc: "Minimally invasive keyhole procedures designed for faster recovery, minimal scars, and reduced pain.",
     fullDesc: "Equipped with high-definition laparoscopy towers, precision harmonic scalpel instruments, and advanced imaging. Our laparoscopy unit allows complex gynecological and pelvic surgeries to be completed through tiny incisions.",
     icon: "Activity",
+    image: "/assets/departments/advanced-laparoscopy.jpg",
     highlights: [
       "Laparoscopic Total Hysterectomy (TLH)",
       "Ovarian cystectomy & ovarian drilling",
@@ -200,6 +203,7 @@ export const obstetricsGynecologyUnits = [
     shortDesc: "Clear, detailed real-time ultrasound imaging for confident prenatal care and anomaly screening.",
     fullDesc: "Our ultrasound imaging center utilizes state-of-the-art 3D/4D ultrasound systems to visualize the baby's movements, facial features, and internal organs in real time, ensuring early detection of anatomical variations.",
     icon: "Activity",
+    image: "/assets/departments/sonography-3d-4d.jpg",
     highlights: [
       "Early pregnancy viability & dating scans",
       "Nuchal Translucency (NT) & genetic screening",
@@ -215,6 +219,7 @@ export const obstetricsGynecologyUnits = [
     shortDesc: "Government-authorized center for safe, confidential medical termination and family planning advice.",
     fullDesc: "Saraswati Hospital is a recognized, authorized healthcare center under the Medical Termination of Pregnancy (MTP) Act. We offer respectful, completely confidential, and medically supervised reproductive health options.",
     icon: "ShieldCheck",
+    image: "/assets/departments/mtp-family-planning.jpg",
     highlights: [
       "Government-approved MTP center maintaining strict privacy",
       "Medical and surgical termination under expert gynecologists",
@@ -230,6 +235,7 @@ export const obstetricsGynecologyUnits = [
     shortDesc: "Focused critical monitoring and life support when mother or newborn needs urgent intensive care.",
     fullDesc: "A dedicated intensive care setup specifically engineered for obstetric crises. When mothers experience hypertensive crisis, postpartum hemorrhage (PPH), sepsis, or cardiac complications, our critical care intensivist and obstetric team provide continuous bedside vigilance.",
     icon: "HeartPulse",
+    image: "/assets/departments/obstetrics-icu.jpg",
     highlights: [
       "Directly connected to labour suites and operation theatres",
       "High-dependency multipara monitors & invasive arterial line setups",

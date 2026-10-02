@@ -153,14 +153,12 @@ export default function AboutPage({ navigate, onBookClick }) {
               <span className="kicker">CAMPUS & INFRASTRUCTURE</span>
               <h2>Inside Saraswati Superspeciality Hospital</h2>
             </div>
-            <a
+            <button
               className="outline"
-              href={hospitalInfo.socials.driveGallery}
-              target="_blank"
-              rel="noreferrer"
+              onClick={() => navigate('media')}
             >
-              Full Google Drive Gallery <ExternalLink size={15} />
-            </a>
+              Hospital Photo Gallery <ArrowRight size={15} />
+            </button>
           </div>
 
           <div className="photo-grid-preview">
